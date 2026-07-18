@@ -1,0 +1,73 @@
+.masthead {
+  max-width: var(--wide-width);
+  margin: 0 auto;
+  padding: 2.75rem 1.5rem 0;
+  text-align: center;
+}
+
+.masthead__eyebrow-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-bottom: 1.1rem;
+}
+
+.masthead__eyebrow-row span:nth-child(2) {
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.masthead__title {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: clamp(2.4rem, 7vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--ink);
+}
+
+.masthead__deck {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  color: var(--ink-soft);
+  max-width: 34rem;
+  margin: 1rem auto 0;
+  line-height: 1.55;
+}
+
+.masthead__rule {
+  max-width: var(--wide-width);
+  margin: 1.6rem auto 0;
+  border: none;
+  background: var(--rule-strong);
+}
+
+.masthead__rule--thick {
+  height: 3px;
+}
+
+.masthead__rule--thin {
+  height: 1px;
+  margin-top: 4px;
+  background: var(--rule);
+}
+
+@media (max-width: 640px) {
+  .masthead {
+    padding-top: 2rem;
+  }
+  .masthead__eyebrow-row {
+    font-size: 0.58rem;
+  }
+  .masthead__eyebrow-row span:nth-child(3) {
+    display: none;
+  }
+}

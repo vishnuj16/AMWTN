@@ -1,0 +1,73 @@
+.admin-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 26, 23, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.admin-modal {
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  padding: 1.8rem;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.5);
+}
+
+.admin-modal__label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+.admin-modal__label input {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--rule-strong);
+  background: #fff;
+}
+
+.admin-modal__error {
+  color: var(--signal-red-deep);
+  font-size: 0.85rem;
+  margin: 0.7rem 0 0;
+}
+
+.admin-modal__actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+
+.admin-modal__actions button[type='submit'] {
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.admin-modal__actions button[type='submit']:disabled {
+  opacity: 0.6;
+}
+
+.admin-modal__cancel {
+  background: none;
+  border: none;
+  color: var(--steel);
+  text-decoration: underline;
+  cursor: pointer;
+}

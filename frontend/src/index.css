@@ -1,0 +1,91 @@
+/* ---------------------------------------------------------------------
+   Design tokens
+   A worn broadsheet, not a generic "warm cream + terracotta" template:
+   ink black, aged newsprint, a level-crossing signal red, monsoon-steel
+   blue-grey, and a rare, dry-afternoon gold used only as a spark.
+------------------------------------------------------------------------ */
+:root {
+  --ink: #1c1a17;
+  --ink-soft: #38342c;
+  --paper: #ede6d6;
+  --paper-deep: #e2d8c1;
+  --paper-shadow: #d8cbab;
+  --signal-red: #a63b2e;
+  --signal-red-deep: #7d2b21;
+  --steel: #55636c;
+  --steel-soft: #7c8a90;
+  --gold: #b8902a;
+  --rule: rgba(28, 26, 23, 0.16);
+  --rule-strong: rgba(28, 26, 23, 0.32);
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  --content-width: 680px;
+  --wide-width: 900px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(184, 144, 42, 0.06), transparent 45%),
+    var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle paper-grain texture, cheap to render, no image asset needed */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(28,26,23,0.015) 0px, transparent 1px, transparent 2px),
+    repeating-linear-gradient(90deg, rgba(28,26,23,0.012) 0px, transparent 1px, transparent 2px);
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+a {
+  color: var(--signal-red-deep);
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--signal-red);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal-red);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
