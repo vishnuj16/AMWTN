@@ -24,6 +24,20 @@
 .story__para {
   margin: 0 0 1.35rem;
   text-wrap: pretty;
+  animation: para-reveal 0.8s ease both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 20%;
+}
+
+@supports not (animation-timeline: view()) {
+  .story__para {
+    animation: none;
+  }
+}
+
+@keyframes para-reveal {
+  from { opacity: 0.35; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .story__para--first::first-letter {
@@ -36,13 +50,16 @@
   color: var(--signal-red-deep);
 }
 
+/* Pull quote styled as a punched train ticket - perforated edges,
+   slight tilt as if dropped onto the page. */
 .story__pullquote {
-  margin: 2.6rem auto;
+  margin: 2.8rem auto;
   max-width: 26rem;
-  padding: 1.3rem 1.6rem;
+  padding: 1.4rem 1.9rem;
   background: var(--paper-deep);
-  border: 1px solid var(--rule);
-  box-shadow: 0 10px 24px -18px rgba(28, 26, 23, 0.5);
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong);
+  box-shadow: 0 14px 30px -18px rgba(28, 26, 23, 0.55);
   transform: rotate(-1.1deg);
   position: relative;
   font-family: var(--font-display);
@@ -50,19 +67,28 @@
   font-size: 1.35rem;
   text-align: center;
   color: var(--ink);
+  transition: transform 0.3s ease;
 }
 
-.story__pullquote::before {
+.story__pullquote:hover {
+  transform: rotate(-0.3deg) scale(1.01);
+}
+
+.story__pullquote::before,
+.story__pullquote::after {
   content: '';
   position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-3deg);
-  width: 46px;
-  height: 18px;
-  background: rgba(184, 144, 42, 0.35);
-  border: 1px solid rgba(184, 144, 42, 0.5);
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  border-radius: 50%;
+  transform: translateY(-50%);
 }
+
+.story__pullquote::before { left: -9px; }
+.story__pullquote::after { right: -9px; }
 
 @media (max-width: 640px) {
   .story {
@@ -77,6 +103,6 @@
   }
   .story__pullquote {
     font-size: 1.15rem;
-    padding: 1.1rem 1.2rem;
+    padding: 1.2rem 1.5rem;
   }
 }

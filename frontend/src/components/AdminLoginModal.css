@@ -2,20 +2,33 @@
   position: fixed;
   inset: 0;
   background: rgba(28, 26, 23, 0.55);
+  backdrop-filter: blur(3px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 100;
   padding: 1rem;
+  animation: modal-backdrop-in 0.2s ease both;
 }
 
 .admin-modal {
   background: var(--paper);
   border: 1px solid var(--rule-strong);
-  padding: 1.8rem;
+  padding: 1.9rem;
   width: 100%;
   max-width: 320px;
-  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+  animation: modal-in 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes modal-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .admin-modal__label {
@@ -32,9 +45,16 @@
 .admin-modal__label input {
   font-family: var(--font-body);
   font-size: 1rem;
-  padding: 0.6rem 0.7rem;
+  padding: 0.65rem 0.75rem;
   border: 1px solid var(--rule-strong);
   background: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.admin-modal__label input:focus {
+  border-color: var(--ink);
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ink) 10%, transparent);
 }
 
 .admin-modal__error {
@@ -53,12 +73,16 @@
   background: var(--ink);
   color: var(--paper);
   border: none;
-  padding: 0.6rem 1.2rem;
+  padding: 0.65rem 1.3rem;
   cursor: pointer;
   font-family: var(--font-mono);
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.admin-modal__actions button[type='submit']:hover:not(:disabled) {
+  transform: translateY(-1px);
 }
 .admin-modal__actions button[type='submit']:disabled {
   opacity: 0.6;
@@ -70,4 +94,8 @@
   color: var(--steel);
   text-decoration: underline;
   cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-modal, .admin-modal__backdrop { animation: none; }
 }

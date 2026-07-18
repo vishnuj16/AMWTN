@@ -15,6 +15,7 @@
   text-transform: uppercase;
   color: var(--steel);
   margin-bottom: 1.1rem;
+  animation: masthead-fade-in 0.7s ease both;
 }
 
 .masthead__eyebrow-row span:nth-child(2) {
@@ -31,6 +32,7 @@
   letter-spacing: -0.01em;
   margin: 0;
   color: var(--ink);
+  animation: masthead-rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
 }
 
 .masthead__deck {
@@ -41,6 +43,7 @@
   max-width: 34rem;
   margin: 1rem auto 0;
   line-height: 1.55;
+  animation: masthead-fade-in 0.9s ease 0.3s both;
 }
 
 .masthead__rule {
@@ -48,16 +51,48 @@
   margin: 1.6rem auto 0;
   border: none;
   background: var(--rule-strong);
+  transform-origin: center;
+  animation: masthead-rule-extend 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
 }
 
 .masthead__rule--thick {
   height: 3px;
 }
 
+/* Rendered as a rail: dashed "sleepers" running the width of the page,
+   tying the masthead to the level-crossing motif below. */
 .masthead__rule--thin {
-  height: 1px;
-  margin-top: 4px;
-  background: var(--rule);
+  height: 4px;
+  margin-top: 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--rule-strong) 0 7px,
+    transparent 7px 16px
+  );
+}
+
+@keyframes masthead-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes masthead-rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes masthead-rule-extend {
+  from { transform: scaleX(0.3); opacity: 0; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .masthead__eyebrow-row,
+  .masthead__title,
+  .masthead__deck,
+  .masthead__rule {
+    animation: none;
+  }
 }
 
 @media (max-width: 640px) {

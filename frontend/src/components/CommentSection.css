@@ -30,22 +30,32 @@
   background: var(--signal-red-deep);
   color: var(--paper);
   border: none;
-  padding: 0.75rem 1.6rem;
+  padding: 0.8rem 1.8rem;
   font-family: var(--font-mono);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
+  box-shadow: 0 8px 18px -10px color-mix(in srgb, var(--signal-red-deep) 70%, transparent);
+  transition: transform 0.18s cubic-bezier(0.34, 1.5, 0.44, 1), box-shadow 0.18s ease, background 0.18s ease;
 }
 .letters__cta:hover {
   background: var(--signal-red);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px -10px color-mix(in srgb, var(--signal-red-deep) 80%, transparent);
+}
+.letters__cta:active {
+  transform: translateY(0);
+}
+.letters__cta:focus-visible {
+  outline: 2px solid var(--signal-red-deep);
+  outline-offset: 3px;
 }
 .letters__cta:disabled {
   opacity: 0.6;
   cursor: default;
   transform: none;
+  box-shadow: none;
 }
 
 .letters__form {
@@ -53,7 +63,14 @@
   margin: 0 auto 2.6rem;
   background: var(--paper-deep);
   border: 1px solid var(--rule);
-  padding: 1.5rem;
+  box-shadow: 0 20px 40px -28px rgba(28, 26, 23, 0.5);
+  padding: 1.6rem;
+  animation: letters-form-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes letters-form-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .letters__field {
@@ -74,16 +91,19 @@
   font-size: 1rem;
   text-transform: none;
   letter-spacing: normal;
-  padding: 0.6rem 0.7rem;
+  padding: 0.65rem 0.75rem;
   border: 1px solid var(--rule-strong);
   background: var(--paper);
   color: var(--ink);
   resize: vertical;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .letters__field input:focus,
 .letters__field textarea:focus {
   border-color: var(--signal-red-deep);
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal-red-deep) 15%, transparent);
 }
 
 .letters__error {
@@ -113,7 +133,7 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: 1.1rem;
 }
 
 .letters__empty {
@@ -123,9 +143,33 @@
   padding: 1.5rem 0;
 }
 
+/* Each letter reads as a torn ticket stub - dashed perforation on the left,
+   a small punched hole, gentle lift on hover. */
 .letters__item {
+  position: relative;
   border-top: 1px solid var(--rule);
-  padding-top: 1.1rem;
+  padding: 1.2rem 1.2rem 1.2rem 1.6rem;
+  background: var(--paper-deep);
+  border-left: 2px dashed var(--rule-strong);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.letters__item:hover {
+  transform: translateX(2px);
+  box-shadow: -4px 6px 18px -14px rgba(28, 26, 23, 0.4);
+}
+
+.letters__item::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
 }
 
 .letters__meta {
@@ -157,5 +201,8 @@
   }
   .letters__title {
     font-size: 1.6rem;
+  }
+  .letters__item {
+    padding: 1rem 1rem 1rem 1.3rem;
   }
 }
