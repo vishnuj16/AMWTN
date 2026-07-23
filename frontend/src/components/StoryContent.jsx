@@ -16,9 +16,20 @@ export default function StoryContent({ body }) {
   const paragraphs = toParagraphs(body)
   const midpoint = Math.floor(paragraphs.length * 0.42)
 
+  function blockCopying(e) {
+    e.preventDefault()
+  }
+
   return (
-    <article className="story">
-      <p className="story__byline">Words by Vishnu &middot; a Chennai&ndash;Kollengode story</p>
+    <article
+      className="story story--no-copy"
+      onCopy={blockCopying}
+      onCut={blockCopying}
+      onContextMenu={blockCopying}
+      onDragStart={blockCopying}
+      onSelectStart={blockCopying}
+    >
+      <p className="story__byline">Words by Vishnu Vyas</p>
 
       <BarrierDivider label="Boom barrier down &middot; the 7:45 is waiting" />
 

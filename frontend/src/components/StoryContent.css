@@ -4,6 +4,13 @@
   padding: 0 1.5rem;
 }
 
+.story--no-copy,
+.story--no-copy * {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 .story__byline {
   text-align: center;
   font-family: var(--font-mono);
